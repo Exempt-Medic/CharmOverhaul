@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharmOverhaul", "CharmOverhaul\CharmOverhaul.csproj", "{EA8B3E3D-423F-4FD6-A113-92D5962CBF8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{39B4D5B7-854D-4E6C-A442-B1B03EE12AF3}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+		.github\dependabot.yml = .github\dependabot.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA8B3E3D-423F-4FD6-A113-92D5962CBF8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA8B3E3D-423F-4FD6-A113-92D5962CBF8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA8B3E3D-423F-4FD6-A113-92D5962CBF8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA8B3E3D-423F-4FD6-A113-92D5962CBF8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FB03AAE-E945-4732-B824-7B3B1AED9261}
+	EndGlobalSection
+EndGlobal
