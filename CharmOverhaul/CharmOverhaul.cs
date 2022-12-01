@@ -39,11 +39,11 @@ namespace CharmOverhaul
 
         private float avariciousTimer;
 
-        private AudioClip geoCollect;
+        private AudioClip? geoCollect;
 
         private static MethodInfo origCharmUpdate = typeof(HeroController).GetMethod("orig_CharmUpdate", BindingFlags.Public | BindingFlags.Instance);
 
-        private ILHook ilOrigCharmUpdate;
+        private ILHook? ilOrigCharmUpdate;
 
         public CharmOverhaulMod() : base("CharmOverhaul")
         {
