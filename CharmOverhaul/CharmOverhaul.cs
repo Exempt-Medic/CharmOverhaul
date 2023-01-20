@@ -4,19 +4,44 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using GlobalEnums;
 using MonoMod.Cil;
-using MonoMod.RuntimeDetour;
 using HutongGames.PlayMaker;
 using HutongGames.PlayMaker.Actions;
+using Satchel.BetterMenus;
 using SFCore.Utils;
 using HKMirror;
+using HKMirror.Hooks.ILHooks;
+using HKMirror.Reflection.SingletonClasses;
 
 namespace CharmOverhaul
 {
-    public class CharmOverhaulMod : Mod
+    #region Menu
+    public static class ModMenu
     {
+        private static Menu? MenuRef;
+        public static MenuScreen CreateModMenu(MenuScreen modlistmenu)
+        {
+            MenuRef ??= new Menu("CharmOverhaul Options", new Element[]
+            {
+                Blueprints.HorizontalBoolOption
+                (
+                    "Sorcerer Stone",
+                    "Shaman Stone + Kingsoul",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.SorcererStone = b;
+                    },
+                    () => CharmOverhaulMod.LS.SorcererStone
+                )
+            });
+            return MenuRef.GetMenuScreen(modlistmenu);
+        }
+    }
+    #endregion
+    public class CharmOverhaulMod : Mod, ICustomMenuMod, ILocalSettings<LocalSettings>
+    {
+        #region Boilerplate
         private static CharmOverhaulMod? _instance;
 
         internal static CharmOverhaulMod Instance
@@ -31,8 +56,19 @@ namespace CharmOverhaul
             }
         }
 
+        public MenuScreen GetMenuScreen(MenuScreen modListMenu, ModToggleDelegates? toggleDelegates) => ModMenu.CreateModMenu(modListMenu);
+        public bool ToggleButtonInsideMenu => false;
+        public static LocalSettings LS { get; private set; } = new();
+        public void OnLoadLocal(LocalSettings s) => LS = s;
+        public LocalSettings OnSaveLocal() => LS;
         public override string GetVersion() => GetType().Assembly.GetName().Version.ToString();
+        public CharmOverhaulMod() : base("CharmOverhaul")
+        {
+            _instance = this;
+        }
+        #endregion
 
+        #region Custom Variables
         private bool shield = false;
 
         private bool kinematic = false;
@@ -40,16 +76,9 @@ namespace CharmOverhaul
         private float avariciousTimer;
 
         private AudioClip? geoCollect;
+        #endregion
 
-        private static MethodInfo origCharmUpdate = typeof(HeroController).GetMethod("orig_CharmUpdate", BindingFlags.Public | BindingFlags.Instance);
-
-        private ILHook? ilOrigCharmUpdate;
-
-        public CharmOverhaulMod() : base("CharmOverhaul")
-        {
-            _instance = this;
-        }
-
+        #region Init
         public override void Initialize()
         {
             Log("Initializing");
@@ -86,11 +115,20 @@ namespace CharmOverhaul
 
             geoCollect = Resources.FindObjectsOfTypeAll<AudioClip>().First(c => c.name == "geo_small_collect_1");
 
-            ilOrigCharmUpdate = new ILHook(origCharmUpdate, CharmUpdateHook);
+            // Joni's Blessing 1.4x -> 1.5x
+            ILHeroController.orig_CharmUpdate += (il) =>
+            {
+                ILCursor cursor = new ILCursor(il).Goto(0);
+                cursor.GotoNext(i => i.MatchLdcR4(1.4f));
+                cursor.GotoNext();
+                cursor.EmitDelegate<Func<float, float>>(x => 1.5f);
+            };
 
             Log("Initialized");
         }
+        #endregion
 
+        #region Changes
         // Glowing Womb Buffs
         private void OnHatchlingEnable(On.KnightHatchling.orig_OnEnable orig, KnightHatchling self)
         {
@@ -99,7 +137,6 @@ namespace CharmOverhaul
 
             orig(self);
         }
-
 
         // Rebalancing Soul Eater
         private int OnSoulGainHook(int num)
@@ -114,7 +151,7 @@ namespace CharmOverhaul
         {
             int totalMP = PlayerDataAccess.MPCharge + PlayerDataAccess.MPReserve;
 
-            if (dir == AttackDirection.normal && PlayerDataAccess.royalCharmState == 3 && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.equippedCharm_19 && totalMP >= 99)
+            if (dir == AttackDirection.normal && PlayerDataAccess.royalCharmState == 3 && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.equippedCharm_19 && totalMP >= 99 && LS.SorcererStone)
             {
                 if (UnityEngine.Random.Range(1, 101) <= (totalMP - 66) / 33 * 11)
                 {
@@ -163,7 +200,7 @@ namespace CharmOverhaul
         {
             orig(self);
 
-            ReflectionHelper.SetField<SpellFluke, int>(self, "damage", PlayerDataAccess.equippedCharm_19 ? 7 : 5);
+            ReflectionHelper.SetField(self, "damage", PlayerDataAccess.equippedCharm_19 ? 7 : 5);
         }
 
         private void OnSendMessageV2Action(On.HutongGames.PlayMaker.Actions.SendMessageV2.orig_DoSendMessage orig, SendMessageV2 self)
@@ -280,7 +317,6 @@ namespace CharmOverhaul
             {
                 self.AddMPCharge(amount);
                 GameManager.instance.StartCoroutine(SoulUpdate());
-
             }
 
             orig(self, amount);
@@ -312,7 +348,7 @@ namespace CharmOverhaul
             }
 
             // Joni's Blessing + Carefree Melody
-            if (ReflectionHelper.GetField<HeroController, int>(self, "hitsSinceShielded") != 0 && hazardType == 1 && PlayerDataAccess.equippedCharm_27 && HeroController.instance.carefreeShieldEquipped)
+            if (HeroControllerR.hitsSinceShielded != 0 && hazardType == 1 && PlayerDataAccess.equippedCharm_27 && HeroController.instance.carefreeShieldEquipped)
             {
                 shield = true;
             }
@@ -320,7 +356,7 @@ namespace CharmOverhaul
             orig(self, go, damageSide, damageAmount, hazardType);
 
             // Joni's Blessing + Carefree Melody
-            if (ReflectionHelper.GetField<HeroController, int>(self, "hitsSinceShielded") == 0 && shield)
+            if (HeroControllerR.hitsSinceShielded == 0 && shield)
             {
                 EventRegister.SendEvent("ADD BLUE HEALTH");
                 if (PlayerDataAccess.equippedCharm_23 && !PlayerDataAccess.brokenCharm_23 && PlayerDataAccess.gotCharm_9)
@@ -334,7 +370,7 @@ namespace CharmOverhaul
             // Joni's Blessing + Grubberfly's Elegy
             if (PlayerDataAccess.equippedCharm_27 && PlayerDataAccess.equippedCharm_35)
             {
-                ReflectionHelper.SetField<HeroController, bool>(self, "joniBeam", true);
+                HeroControllerR.joniBeam = true;
             }
         }
 
@@ -408,15 +444,6 @@ namespace CharmOverhaul
             kinematic = false;
 
             return orig(self, collision);
-        }
-
-        // Changes Joni's Blessing to use 1.5 multiplier
-        private void CharmUpdateHook(ILContext il)
-        {
-            ILCursor cursor = new ILCursor(il).Goto(0);
-            cursor.GotoNext(i => i.MatchLdcR4(1.4f));
-            cursor.GotoNext();
-            cursor.EmitDelegate<Func<float, float>>(x => 1.5f);
         }
 
         private void OnFSMEnable(On.PlayMakerFSM.orig_OnEnable orig, PlayMakerFSM self)
@@ -681,23 +708,6 @@ namespace CharmOverhaul
             PlayerData.instance.SetInt("charmCost_40", 2);
         }
 
-        private IEnumerator Kinematic()
-        {
-            yield return new WaitForSeconds(0.5f);
-            kinematic = false;
-        }
-
-        private IEnumerator SoulUpdate()
-        {
-            yield return new WaitForSeconds(0.5f);
-            GameCameras.instance.gameObject.transform.Find("HudCamera/Hud Canvas/Soul Orb").gameObject.LocateMyFSM("Soul Orb Control").SendEvent("MP GAIN");
-        }
-
-        private List<MapZone> dreamZones = new List<MapZone>()
-        {
-            MapZone.DREAM_WORLD, MapZone.ROYAL_QUARTER, MapZone.WHITE_PALACE, MapZone.FINAL_BOSS, MapZone.GODSEEKER_WASTE, MapZone.GODS_GLORY
-        };
-
         // Avaricious Swarm
         public void OnHeroUpdateHook()
         {
@@ -720,5 +730,29 @@ namespace CharmOverhaul
                 }
             }
         }
+
+        private IEnumerator Kinematic()
+        {
+            yield return new WaitForSeconds(0.5f);
+            kinematic = false;
+        }
+
+        private IEnumerator SoulUpdate()
+        {
+            yield return new WaitForSeconds(0.5f);
+            GameCameras.instance.gameObject.transform.Find("HudCamera/Hud Canvas/Soul Orb").gameObject.LocateMyFSM("Soul Orb Control").SendEvent("MP GAIN");
+        }
+
+        private List<MapZone> dreamZones = new List<MapZone>()
+        {
+            MapZone.DREAM_WORLD, MapZone.ROYAL_QUARTER, MapZone.WHITE_PALACE, MapZone.FINAL_BOSS, MapZone.GODSEEKER_WASTE, MapZone.GODS_GLORY
+        };
+        #endregion
     }
+    #region Settings
+    public class LocalSettings
+    {
+        public bool SorcererStone = true;
+    }
+    #endregion
 }
