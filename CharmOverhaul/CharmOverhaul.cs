@@ -412,7 +412,7 @@ namespace CharmOverhaul
             HeroController.instance.gameObject.transform.Find("SuperDash Damage").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("damageDealt").Value = (PlayerDataAccess.equippedCharm_34 ? 2 : 1) * (13 + (PlayerDataAccess.nailSmithUpgrades * 4));
 
             // Apparently the parent is removed at first, so we wait for it to exist again
-            GameManager.instance.StartCoroutine("CDash");
+            GameManager.instance.StartCoroutine(CDash());
 
             // Stalwart Shell & Baldur Shell increase i-frames
             self.INVUL_TIME_STAL = PlayerDataAccess.equippedCharm_5 ? 2.05f : 1.75f;
