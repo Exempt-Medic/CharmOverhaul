@@ -409,8 +409,10 @@ namespace CharmOverhaul
             self.gameObject.LocateMyFSM("Superdash").GetFsmFloatVariable("Charge Time").Value = 0.8f + (PlayerDataAccess.equippedCharm_34 ? 0.2f : 0) - (PlayerDataAccess.equippedCharm_7 ? 0.2f : 0);
 
             // Increases Crystal Heart damage (including Nail upgrades and Deep Focus scaling)
-            self.gameObject.transform.Find("SuperDash Damage").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("damageDealt").Value = (PlayerDataAccess.equippedCharm_34 ? 2 : 1) * (13 + (PlayerDataAccess.nailSmithUpgrades * 4));
-            self.gameObject.transform.Find("Effects/SD Burst").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("damageDealt").Value = (PlayerDataAccess.equippedCharm_34 ? 2 : 1) * (13 + (PlayerDataAccess.nailSmithUpgrades * 4));
+            HeroController.instance.gameObject.transform.Find("SuperDash Damage").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("damageDealt").Value = (PlayerDataAccess.equippedCharm_34 ? 2 : 1) * (13 + (PlayerDataAccess.nailSmithUpgrades * 4));
+
+            // Apparently the parent is removed at first, so we wait for it to exist again
+            GameManager.instance.StartCoroutine("CDash");
 
             // Stalwart Shell & Baldur Shell increase i-frames
             self.INVUL_TIME_STAL = PlayerDataAccess.equippedCharm_5 ? 2.05f : 1.75f;
@@ -741,6 +743,16 @@ namespace CharmOverhaul
         {
             yield return new WaitForSeconds(0.5f);
             GameCameras.instance.gameObject.transform.Find("HudCamera/Hud Canvas/Soul Orb").gameObject.LocateMyFSM("Soul Orb Control").SendEvent("MP GAIN");
+        }
+
+        private IEnumerator CDash()
+        {
+            while (HeroController.instance.gameObject.transform.Find("Effects/SD Burst").gameObject == null)
+            {
+                yield return null;
+            }
+
+            HeroController.instance.gameObject.transform.Find("Effects/SD Burst").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("damageDealt").Value = (PlayerDataAccess.equippedCharm_34 ? 2 : 1) * (13 + (PlayerDataAccess.nailSmithUpgrades * 4));
         }
 
         private List<MapZone> dreamZones = new List<MapZone>()
