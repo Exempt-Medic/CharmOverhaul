@@ -101,6 +101,7 @@ namespace CharmOverhaul
             On.HutongGames.PlayMaker.Actions.SendMessage.OnEnter += OnSendMessageAction;
             On.HutongGames.PlayMaker.Actions.SendMessageV2.DoSendMessage += OnSendMessageV2Action;
             On.HutongGames.PlayMaker.Actions.Wait.OnEnter += OnWaitAction;
+            On.HutongGames.PlayMaker.Actions.SpawnObjectFromGlobalPoolOverTime.OnUpdate += OnSpawnObjectFromGlobalPoolOverTimeAction;
 
             ModHooks.GetPlayerIntHook += OnGetPlayerIntHook;
             ModHooks.HeroUpdateHook += OnHeroUpdateHook;
@@ -194,6 +195,16 @@ namespace CharmOverhaul
 
             return orig(extraDamageTypes);
         }
+        private void OnSpawnObjectFromGlobalPoolOverTimeAction(On.HutongGames.PlayMaker.Actions.SpawnObjectFromGlobalPoolOverTime.orig_OnUpdate orig, SpawnObjectFromGlobalPoolOverTime self)
+        {
+            if (self.Fsm.GameObject.name == "Dung" && self.Fsm.Name == "Control" && self.State.Name == "Equipped")
+            {
+                self.frequency.Value = 0.75f - ((HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Activate" || HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Stay Furied") ? 0.375f : 0);
+            }
+
+            orig(self);
+        }
+
 
         // Increases Flukenest damage
         private void OnSpellFluke(On.SpellFluke.orig_OnEnable orig, SpellFluke self)
@@ -298,12 +309,12 @@ namespace CharmOverhaul
             orig(self);
         }
 
-        // Greed + Gathering Swarm instant money
+        // Wayward Compass + Gathering Swarm instant money
         private void OnGeoEnable(On.GeoControl.orig_OnEnable orig, GeoControl self)
         {
             orig(self);
 
-            if (PlayerDataAccess.equippedCharm_1 && PlayerDataAccess.equippedCharm_24 && !PlayerDataAccess.brokenCharm_24)
+            if (PlayerDataAccess.equippedCharm_1 && PlayerDataAccess.equippedCharm_2)
             {
                 HeroController.instance.AddGeo((int)Math.Pow(5, self.type));
                 self.Disable(0f);
@@ -420,6 +431,8 @@ namespace CharmOverhaul
             // Heavy Blow + Nailmaster's Glory Spell Damage
             self.gameObject.transform.Find("Attacks/Great Slash").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
             self.gameObject.transform.Find("Attacks/Dash Slash").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
+            self.gameObject.transform.Find("Attacks/Cyclone Slash/Hits/Hit L").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
+            self.gameObject.transform.Find("Attacks/Cyclone Slash/Hits/Hit R").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
 
             // Fury of the Fallen Overcharming
             if (PlayerDataAccess.equippedCharm_6 && PlayerDataAccess.overcharmed)
@@ -698,15 +711,17 @@ namespace CharmOverhaul
             }
         }
 
-        // Sets Dashmaster, Hiveblood, Deep Focus, Flukenest, and Carefree Melody costs.
+        // Sets Wayward Compass, Flukenest, Hiveblood, Dashmaster, Deep Focus, Dreamshield, and Carefree Melody costs.
         private void OnHCAwake(On.HeroController.orig_Awake orig, HeroController self)
         {
             orig(self);
 
-            PlayerData.instance.SetInt("charmCost_31", 1);
-            PlayerData.instance.SetInt("charmCost_29", 3);
-            PlayerData.instance.SetInt("charmCost_34", 3);
+            PlayerData.instance.SetInt("charmCost_2", 0);
             PlayerData.instance.SetInt("charmCost_11", 2);
+            PlayerData.instance.SetInt("charmCost_29", 3);
+            PlayerData.instance.SetInt("charmCost_31", 1);
+            PlayerData.instance.SetInt("charmCost_34", 3);
+            PlayerData.instance.SetInt("charmCost_38", 2);
             PlayerData.instance.SetInt("charmCost_40", 2);
         }
 
@@ -755,7 +770,7 @@ namespace CharmOverhaul
             HeroController.instance.gameObject.transform.Find("Effects/SD Burst").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("damageDealt").Value = (PlayerDataAccess.equippedCharm_34 ? 2 : 1) * (13 + (PlayerDataAccess.nailSmithUpgrades * 4));
         }
 
-        private List<MapZone> dreamZones = new List<MapZone>()
+        private readonly List<MapZone> dreamZones = new()
         {
             MapZone.DREAM_WORLD, MapZone.ROYAL_QUARTER, MapZone.WHITE_PALACE, MapZone.FINAL_BOSS, MapZone.GODSEEKER_WASTE, MapZone.GODS_GLORY
         };
