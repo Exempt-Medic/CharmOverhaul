@@ -33,7 +33,18 @@ namespace CharmOverhaul
                         CharmOverhaulMod.LS.SorcererStone = b;
                     },
                     () => CharmOverhaulMod.LS.SorcererStone
-                )
+                ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Wayward Swarm",
+                    "Wayward Compass + Gathering Swam",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.WaywardSwarm = b;
+                    },
+                    () => CharmOverhaulMod.LS.WaywardSwarm
+                 )
             });
             return MenuRef.GetMenuScreen(modlistmenu);
         }
@@ -314,7 +325,7 @@ namespace CharmOverhaul
         {
             orig(self);
 
-            if (PlayerDataAccess.equippedCharm_1 && PlayerDataAccess.equippedCharm_2)
+            if (PlayerDataAccess.equippedCharm_1 && PlayerDataAccess.equippedCharm_2 && LS.WaywardSwarm)
             {
                 HeroController.instance.AddGeo((int)Math.Pow(5, self.type));
                 self.Disable(0f);
@@ -780,6 +791,7 @@ namespace CharmOverhaul
     public class LocalSettings
     {
         public bool SorcererStone = true;
+        public bool WaywardSwarm = true;
     }
     #endregion
 }
