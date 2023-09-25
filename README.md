@@ -6,13 +6,13 @@ Personal attempt to port the Charm Overhaul mod to 1.5. Coded almost entirely fr
 <h2>Changes</h2>
 
 **Crystal Heart:**
-* Damaged increased to 13 plus 4 more for each Nail upgrade. Doubled with Deep Focus.
+* Damage increased to 13 plus 4 more for each Nail upgrade. Doubled with Deep Focus.
 * Charge time increases by 0.2s with Deep Focus and decreases by 0.2s with Quick Focus.
 
 **Single Charms:**
 * Reduces the cost of Wayward Compass, Flukenest, Hiveblood, Dashmaster, Deep Focus, Dreamshield, and Carefree Melody by 1
 * Joni's Blessing increased from 40% to 50%
-* Glowing Womb damaged increased by 1 (increased by 2 with Defender's Crest)
+* Glowing Womb damage increased by 1 (increased by 2 with Defender's Crest)
 * Flukenest base damage increased to 5 (increased to 7 with Shaman Stone)
 * Heavy Blow increases Nail damage by 15%
 * Sprintmaster increases walking speed (such as in Dirtmouth)
