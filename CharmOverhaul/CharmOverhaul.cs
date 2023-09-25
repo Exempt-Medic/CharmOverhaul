@@ -26,6 +26,171 @@ namespace CharmOverhaul
             {
                 Blueprints.HorizontalBoolOption
                 (
+                    "Avaricious Swarm",
+                    "Gathering Swarm + Fragile/Unbreakable Strength",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.AvariciousSwarm = b;
+                    },
+                    () => CharmOverhaulMod.LS.AvariciousSwarm
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Balanced Blow",
+                    "Heavy Blow + Steady Body",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.BalancedBlow = b;
+                    },
+                    () => CharmOverhaulMod.LS.BalancedBlow
+                 ),
+
+                //Blueprints.HorizontalBoolOption
+                //(
+                //    "Blazing Speed",
+                //    "Fury of the Fallen + Sprintmaster",
+                //    (b) =>
+                //    {
+                //        CharmOverhaulMod.LS.BlazingSpeed = b;
+                //    },
+                //    () => CharmOverhaulMod.LS.BlazingSpeed
+                // ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Burning Odor",
+                    "Defender's Crest + Fury of the Fallen",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.BurningOdor = b;
+                    },
+                    () => CharmOverhaulMod.LS.BurningOdor
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Depraved Womb",
+                    "Glowing Womb + Soul Eater",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.DepravedWomb = b;
+                    },
+                    () => CharmOverhaulMod.LS.DepravedWomb
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Doom Desire",
+                    "Fury of the Fallen + Fragile/Unbreakable Strength",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.DoomDesire = b;
+                    },
+                    () => CharmOverhaulMod.LS.DoomDesire
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Entrenched Shell",
+                    "Stalwart Shell + Baldur Shell",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.EntrenchedShell = b;
+                    },
+                    () => CharmOverhaulMod.LS.EntrenchedShell
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Gilded Hunger",
+                    "Fragile/Unbreakable Strength + Soul Eater",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.GildedHunger = b;
+                    },
+                    () => CharmOverhaulMod.LS.GildedHunger
+                 ),
+
+                //Blueprints.HorizontalBoolOption
+                //(
+                //    "Hiveshell",
+                //    "Hiveblood + Baldur Shell",
+                //    (b) =>
+                //    {
+                //        CharmOverhaulMod.LS.HiveShell = b;
+                //    },
+                //    () => CharmOverhaulMod.LS.HiveShell
+                // ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Hivesong",
+                    "Hiveblood + Grubsong",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.HiveSong = b;
+                    },
+                    () => CharmOverhaulMod.LS.HiveSong
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Kinematic Shell",
+                    "Stalwart Shell + Defender's Crest",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.KinematicShell = b;
+                    },
+                    () => CharmOverhaulMod.LS.KinematicShell
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Lifeblood Elegy",
+                    "Joni's Blessing + Grubberfly's Elegy",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.LifebloodElegy = b;
+                    },
+                    () => CharmOverhaulMod.LS.LifebloodElegy
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Lifeblood Melody",
+                    "Joni's Blessing + Carefree Melody",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.LifebloodMelody = b;
+                    },
+                    () => CharmOverhaulMod.LS.LifebloodMelody
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Shadow Thief",
+                    "Sharp Shadow + Voidheart + Soul Catcher",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.ShadowThief = b;
+                    },
+                    () => CharmOverhaulMod.LS.ShadowThief
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Shield Breacher",
+                    "Heavy Blow + Nailmaster's Glory",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.ShieldBreacher = b;
+                    },
+                    () => CharmOverhaulMod.LS.ShieldBreacher
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
                     "Sorcerer Stone",
                     "Shaman Stone + Kingsoul",
                     (b) =>
@@ -37,13 +202,57 @@ namespace CharmOverhaul
 
                 Blueprints.HorizontalBoolOption
                 (
+                    "Umbral Vision",
+                    "Sharp Shadow + Sprintmaster",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.UmbralVision = b;
+                    },
+                    () => CharmOverhaulMod.LS.UmbralVision
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Vengeful Melody",
+                    "Carefree Melody + Fury of the Fallen",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.VengefulMelody = b;
+                    },
+                    () => CharmOverhaulMod.LS.VengefulMelody
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Void Twister",
+                    "Voidheart + Spell Twister",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.VoidTwister = b;
+                    },
+                    () => CharmOverhaulMod.LS.VoidTwister
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
                     "Wayward Swarm",
-                    "Wayward Compass + Gathering Swam",
+                    "Wayward Compass + Gathering Swarm",
                     (b) =>
                     {
                         CharmOverhaulMod.LS.WaywardSwarm = b;
                     },
                     () => CharmOverhaulMod.LS.WaywardSwarm
+                 ),
+
+                Blueprints.HorizontalBoolOption
+                (
+                    "Worldsoul / Godsoul",
+                    "Kingsoul + Soul Catcher / Soul Eater",
+                    (b) =>
+                    {
+                        CharmOverhaulMod.LS.WorldSoul = b;
+                    },
+                    () => CharmOverhaulMod.LS.WorldSoul
                  )
             });
             return MenuRef.GetMenuScreen(modlistmenu);
@@ -178,7 +387,7 @@ namespace CharmOverhaul
         {
             if (self.Fsm.GameObject.name == "Charm Effects" && self.Fsm.Name == "Hatchling Spawn" && self.State.Name == "Equipped")
             {
-                self.time.Value = PlayerDataAccess.equippedCharm_21 ? 3 : 4;
+                self.time.Value = PlayerDataAccess.equippedCharm_21 && LS.DepravedWomb ? 3 : 4;
             }
 
             orig(self);
@@ -199,7 +408,7 @@ namespace CharmOverhaul
         private int OnExtraDamageGetType(On.ExtraDamageable.orig_GetDamageOfType orig, ExtraDamageTypes extraDamageTypes)
         {
             // Defender's Crest + Fury of the Fallen
-            if (HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Activate" || HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Stay Furied" && extraDamageTypes == ExtraDamageTypes.Dung)
+            if (LS.BurningOdor && (HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Activate" || HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Stay Furied" && extraDamageTypes == ExtraDamageTypes.Dung))
             {
                 return 3;
             }
@@ -210,7 +419,7 @@ namespace CharmOverhaul
         {
             if (self.Fsm.GameObject.name == "Dung" && self.Fsm.Name == "Control" && self.State.Name == "Equipped")
             {
-                self.frequency.Value = 0.75f - ((HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Activate" || HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Stay Furied") ? 0.375f : 0);
+                self.frequency.Value = 0.75f - (LS.BurningOdor && ((HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Activate" || HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Stay Furied")) ? 0.375f : 0);
             }
 
             orig(self);
@@ -230,7 +439,7 @@ namespace CharmOverhaul
             // Kingsoul + Soul Catcher / Soul Eater
             if (self.Fsm.GameObject.name == "Charm Effects" && self.Fsm.Name == "White Charm" && self.State.Name == "Soul UP")
             {
-                self.functionCall.IntParameter = 4 + (PlayerDataAccess.equippedCharm_20 ? PlayerDataAccess.equippedCharm_21 ? 3 : 1 : PlayerDataAccess.equippedCharm_21 ? 2 : 0);
+                self.functionCall.IntParameter = 4 + (LS.WorldSoul && PlayerDataAccess.equippedCharm_20 ? (PlayerDataAccess.equippedCharm_21 ? 3 : 1) : LS.WorldSoul && PlayerDataAccess.equippedCharm_21 ? 2 : 0);
             }
 
             orig(self);
@@ -251,7 +460,7 @@ namespace CharmOverhaul
         // Sharp Shadow + Sprintmaster i-frames
         private void OnCancelDash(On.HeroController.orig_CancelDash orig, HeroController self)
         {
-            if (self.cState.shadowDashing && PlayerDataAccess.equippedCharm_16 && PlayerDataAccess.equippedCharm_37)
+            if (LS.UmbralVision && self.cState.shadowDashing && PlayerDataAccess.equippedCharm_16 && PlayerDataAccess.equippedCharm_37)
             {
                 HeroController.instance.StartCoroutine("Invulnerable", 0.25f);
             }
@@ -262,19 +471,19 @@ namespace CharmOverhaul
         // Sharp Shadow + Voidheart + Soul Catcher SOUL gain
         private void OnHMTakeDamage(On.HealthManager.orig_TakeDamage orig, HealthManager self, HitInstance hitInstance)
         {
-            if (hitInstance.AttackType == AttackTypes.SharpShadow && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.royalCharmState == 4 && PlayerDataAccess.equippedCharm_20)
+            if (LS.ShadowThief && hitInstance.AttackType == AttackTypes.SharpShadow && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.royalCharmState == 4 && PlayerDataAccess.equippedCharm_20)
             {
                 HeroController.instance.AddMPCharge(8);
             }
 
             // Carefree Melody + Fury of the Fallen Crits
-            if (hitInstance.AttackType == AttackTypes.Nail && PlayerDataAccess.equippedCharm_6 && HeroController.instance.carefreeShieldEquipped && !(HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Activate") && !(HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Stay Furied"))
+            if (LS.VengefulMelody && hitInstance.AttackType == AttackTypes.Nail && PlayerDataAccess.equippedCharm_6 && HeroController.instance.carefreeShieldEquipped && !(HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Activate") && !(HeroController.instance.gameObject.transform.Find("Charm Effects").gameObject.LocateMyFSM("Fury").ActiveStateName == "Stay Furied"))
             {
                 hitInstance.DamageDealt = (int)(hitInstance.DamageDealt * ((UnityEngine.Random.Range(0, 100) < ((2 * (PlayerDataAccess.maxHealth - PlayerDataAccess.health)) + ((PlayerDataAccess.maxHealth == PlayerDataAccess.health) ? 1 : 0))) ? 1.25f : 1.0f));
             }
 
             // Greed + Fury of the Fallen Geo
-            if (hitInstance.AttackType == AttackTypes.Nail && PlayerDataAccess.equippedCharm_6 && PlayerDataAccess.equippedCharm_24 && !PlayerDataAccess.brokenCharm_24)
+            if (LS.DoomDesire && hitInstance.AttackType == AttackTypes.Nail && PlayerDataAccess.equippedCharm_6 && PlayerDataAccess.equippedCharm_24 && !PlayerDataAccess.brokenCharm_24)
             {
                 HeroController.instance.AddGeo((int)(hitInstance.DamageDealt * hitInstance.Multiplier * 0.2f));
             }
@@ -289,17 +498,17 @@ namespace CharmOverhaul
             {
                 if (self.State.Name == "Fireball 2" && self.functionCall.FunctionName == "TakeMP")
                 {
-                    self.Fsm.FsmComponent.GetFsmIntVariable("MP Cost").Value = (PlayerDataAccess.equippedCharm_33 && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.royalCharmState == 4) ? 22 : PlayerDataAccess.equippedCharm_33 ? 24 : 33;
+                    self.Fsm.FsmComponent.GetFsmIntVariable("MP Cost").Value = (LS.VoidTwister && PlayerDataAccess.equippedCharm_33 && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.royalCharmState == 4) ? 22 : PlayerDataAccess.equippedCharm_33 ? 24 : 33;
                 }
 
                 else if (self.State.Name == "Scream Burst 2" && self.functionCall.FunctionName == "TakeMP")
                 {
-                    self.Fsm.FsmComponent.GetFsmIntVariable("MP Cost").Value = (PlayerDataAccess.equippedCharm_33 && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.royalCharmState == 4) ? 22 : PlayerDataAccess.equippedCharm_33 ? 24 : 33;
+                    self.Fsm.FsmComponent.GetFsmIntVariable("MP Cost").Value = (LS.VoidTwister && PlayerDataAccess.equippedCharm_33 && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.royalCharmState == 4) ? 22 : PlayerDataAccess.equippedCharm_33 ? 24 : 33;
                 }
 
                 else if (self.State.Name == "Level Check 2" && self.functionCall.FunctionName == "TakeMP")
                 {
-                    self.Fsm.FsmComponent.GetFsmIntVariable("MP Cost").Value = (PlayerDataAccess.equippedCharm_33 && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.royalCharmState == 4 && self.Fsm.FsmComponent.GetFsmIntVariable("Spell Level").Value == 2) ? 22 : PlayerDataAccess.equippedCharm_33 ? 24 : 33;
+                    self.Fsm.FsmComponent.GetFsmIntVariable("MP Cost").Value = (LS.VoidTwister && PlayerDataAccess.equippedCharm_33 && PlayerDataAccess.equippedCharm_36 && PlayerDataAccess.royalCharmState == 4 && self.Fsm.FsmComponent.GetFsmIntVariable("Spell Level").Value == 2) ? 22 : LS.VoidTwister && PlayerDataAccess.equippedCharm_33 ? 24 : 33;
                 }
             }
 
@@ -308,12 +517,12 @@ namespace CharmOverhaul
             {
                 if (self.State.Name == "SOUL 1")
                 {
-                    self.functionCall.IntParameter.Value = PlayerDataAccess.equippedCharm_3 ? (PlayerDataAccess.equippedCharm_35 ? 10 : 5) : 0;
+                    self.functionCall.IntParameter.Value = LS.HiveSong && PlayerDataAccess.equippedCharm_3 ? (PlayerDataAccess.equippedCharm_35 ? 10 : 5) : 0;
                 }
 
                 else if (self.State.Name == "SOUL 2")
                 {
-                    self.functionCall.IntParameter.Value = PlayerDataAccess.equippedCharm_3 ? (PlayerDataAccess.equippedCharm_35 ? 15 : 10) : 0;
+                    self.functionCall.IntParameter.Value = LS.HiveSong && PlayerDataAccess.equippedCharm_3 ? (PlayerDataAccess.equippedCharm_35 ? 15 : 10) : 0;
                 }
             }
 
@@ -325,7 +534,7 @@ namespace CharmOverhaul
         {
             orig(self);
 
-            if (PlayerDataAccess.equippedCharm_1 && PlayerDataAccess.equippedCharm_2 && LS.WaywardSwarm)
+            if (LS.WaywardSwarm && PlayerDataAccess.equippedCharm_1 && PlayerDataAccess.equippedCharm_2)
             {
                 HeroController.instance.AddGeo((int)Math.Pow(5, self.type));
                 self.Disable(0f);
@@ -335,7 +544,7 @@ namespace CharmOverhaul
         // Soul Eater + Greed granting SOUL
         private void OnAddGeo(On.HeroController.orig_AddGeo orig, HeroController self, int amount)
         {
-            if (PlayerDataAccess.equippedCharm_21 && PlayerDataAccess.equippedCharm_24 && !PlayerDataAccess.brokenCharm_24)
+            if (LS.GildedHunger && PlayerDataAccess.equippedCharm_21 && PlayerDataAccess.equippedCharm_24 && !PlayerDataAccess.brokenCharm_24)
             {
                 self.AddMPCharge(amount);
                 GameManager.instance.StartCoroutine(SoulUpdate());
@@ -358,7 +567,7 @@ namespace CharmOverhaul
         private void OnHCTakeDamage(On.HeroController.orig_TakeDamage orig, HeroController self, GameObject go, CollisionSide damageSide, int damageAmount, int hazardType)
         {
             // Stalwart Shell + Defender's Crest
-            if (PlayerDataAccess.equippedCharm_4 && PlayerDataAccess.equippedCharm_10 && self.gameObject.GetComponent<Rigidbody2D>().velocity.y <= 0 - self.MAX_FALL_VELOCITY && !self.cState.spellQuake && !self.cState.shadowDashing)
+            if (LS.KinematicShell && PlayerDataAccess.equippedCharm_4 && PlayerDataAccess.equippedCharm_10 && self.gameObject.GetComponent<Rigidbody2D>().velocity.y <= 0 - self.MAX_FALL_VELOCITY && !self.cState.spellQuake && !self.cState.shadowDashing)
             {
                 damageAmount = 0;
                 if (!kinematic)
@@ -378,7 +587,7 @@ namespace CharmOverhaul
             orig(self, go, damageSide, damageAmount, hazardType);
 
             // Joni's Blessing + Carefree Melody
-            if (HeroControllerR.hitsSinceShielded == 0 && shield)
+            if (LS.LifebloodMelody && HeroControllerR.hitsSinceShielded == 0 && shield)
             {
                 EventRegister.SendEvent("ADD BLUE HEALTH");
                 if (PlayerDataAccess.equippedCharm_23 && !PlayerDataAccess.brokenCharm_23 && PlayerDataAccess.gotCharm_9)
@@ -390,7 +599,7 @@ namespace CharmOverhaul
             }
 
             // Joni's Blessing + Grubberfly's Elegy
-            if (PlayerDataAccess.equippedCharm_27 && PlayerDataAccess.equippedCharm_35)
+            if (LS.LifebloodElegy && PlayerDataAccess.equippedCharm_27 && PlayerDataAccess.equippedCharm_35)
             {
                 HeroControllerR.joniBeam = true;
             }
@@ -437,13 +646,13 @@ namespace CharmOverhaul
             GameManager.instance.StartCoroutine(CDash());
 
             // Stalwart Shell & Baldur Shell increase i-frames
-            self.INVUL_TIME_STAL = PlayerDataAccess.equippedCharm_5 ? 2.05f : 1.75f;
+            self.INVUL_TIME_STAL = LS.EntrenchedShell && PlayerDataAccess.equippedCharm_5 ? 2.05f : 1.75f;
 
             // Heavy Blow + Nailmaster's Glory Spell Damage
-            self.gameObject.transform.Find("Attacks/Great Slash").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
-            self.gameObject.transform.Find("Attacks/Dash Slash").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
-            self.gameObject.transform.Find("Attacks/Cyclone Slash/Hits/Hit L").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
-            self.gameObject.transform.Find("Attacks/Cyclone Slash/Hits/Hit R").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
+            self.gameObject.transform.Find("Attacks/Great Slash").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (LS.ShieldBreacher && PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
+            self.gameObject.transform.Find("Attacks/Dash Slash").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (LS.ShieldBreacher && PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
+            self.gameObject.transform.Find("Attacks/Cyclone Slash/Hits/Hit L").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (LS.ShieldBreacher && PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
+            self.gameObject.transform.Find("Attacks/Cyclone Slash/Hits/Hit R").gameObject.LocateMyFSM("damages_enemy").GetFsmIntVariable("attackType").Value = (LS.ShieldBreacher && PlayerDataAccess.equippedCharm_15 && PlayerDataAccess.equippedCharm_26) ? 3 : 0;
 
             // Fury of the Fallen Overcharming
             if (PlayerDataAccess.equippedCharm_6 && PlayerDataAccess.overcharmed)
@@ -454,8 +663,8 @@ namespace CharmOverhaul
             }
 
             // Heavy Blow + Steady Body
-            HeroController.instance.INVUL_TIME_PARRY = (PlayerDataAccess.equippedCharm_14 && PlayerDataAccess.equippedCharm_15) ? 0.4f : 0.25f;
-            HeroController.instance.INVUL_TIME_CYCLONE = (PlayerDataAccess.equippedCharm_14 && PlayerDataAccess.equippedCharm_15) ? 0.4f : 0.25f;
+            HeroController.instance.INVUL_TIME_PARRY = (LS.BalancedBlow && PlayerDataAccess.equippedCharm_14 && PlayerDataAccess.equippedCharm_15) ? 0.4f : 0.25f;
+            HeroController.instance.INVUL_TIME_CYCLONE = (LS.BalancedBlow && PlayerDataAccess.equippedCharm_14 && PlayerDataAccess.equippedCharm_15) ? 0.4f : 0.25f;
         }
 
         private bool OnShouldHardLand(On.HeroController.orig_ShouldHardLand orig, HeroController self, Collision2D collision)
@@ -739,7 +948,7 @@ namespace CharmOverhaul
         // Avaricious Swarm
         public void OnHeroUpdateHook()
         {
-            if (PlayerDataAccess.equippedCharm_1 && PlayerDataAccess.equippedCharm_24 && !PlayerDataAccess.brokenCharm_24)
+            if (LS.AvariciousSwarm && PlayerDataAccess.equippedCharm_1 && PlayerDataAccess.equippedCharm_24 && !PlayerDataAccess.brokenCharm_24)
             {
                 // Don't do it if in dream scene and not with dream wielder
                 if (!(dreamZones.Contains(PlayerDataAccess.mapZone) && !PlayerDataAccess.equippedCharm_30))
@@ -790,8 +999,27 @@ namespace CharmOverhaul
     #region Settings
     public class LocalSettings
     {
+        public bool AvariciousSwarm = true;
+        public bool BalancedBlow = true;
+        //public bool BlazingSpeed = true;
+        public bool BurningOdor = true;
+        public bool DepravedWomb = true;
+        public bool DoomDesire = true;
+        public bool EntrenchedShell = true;
+        public bool GildedHunger = true;
+        //public bool HiveShell = true;
+        public bool HiveSong = true;
+        public bool KinematicShell = true;
+        public bool LifebloodElegy = true;
+        public bool LifebloodMelody = true;
+        public bool ShadowThief = true;
+        public bool ShieldBreacher = true;
         public bool SorcererStone = true;
+        public bool UmbralVision = true;
+        public bool VengefulMelody = true;
+        public bool VoidTwister = true;
         public bool WaywardSwarm = true;
+        public bool WorldSoul = true;
     }
     #endregion
 }
